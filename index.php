@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="overflow-hidden">
 
     <header class="p-3 text-bg-dark">
         <div class="container">
@@ -28,12 +28,12 @@
         </div>
     </header>
 
-    <main class="d-flex flex-row ">
-        <nav class="w-25 bg-info">
+    <main class="d-flex flex-row">
+        <nav class="w-25 bg-info vh-100">
             wololo
         </nav>
 
-        <div class="w-75 bg-light">
+        <div class="w-75 bg-light vh-100">
 
             <table class="table">
                 <thead>
@@ -76,10 +76,6 @@
             ?>
         </div>
     </main>
-
-    <h1>Hello, world!</h1>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
