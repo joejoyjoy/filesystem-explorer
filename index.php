@@ -34,6 +34,36 @@
         </nav>
 
         <div class="w-75 bg-light">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Creation date</th>
+                        <th scope="col">Last Modified Date</th>
+                        <th scope="col">Extension</th>
+                        <th scope="col">Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style='cursor: pointer;' onclick="window.location='google.com';">
+                        <td>Folder</td>
+                        <td>18 May 2022</td>
+                        <td>13 Jan 2023</td>
+                        <td></td>
+                        <td>23 MB</td>
+                    </tr>
+                    <tr style='cursor: pointer;' onclick="window.location='img.com';">
+                        <td>img.png</td>
+                        <td>28 May 2022</td>
+                        <td>03 Jan 2023</td>
+                        <td>PNG</td>
+                        <td>1.2 MB</td>
+                    </tr>
+                    <tr>
+                </tbody>
+            </table>
+
             <?php
             $directory = "root";
             $x = scandir($directory);
