@@ -79,25 +79,22 @@
             $x = scandir($directory);
 
 
-            // $stat = stat('root/test.txt');
-            // echo 'Modification time: ' . gmdate("Y-m-d H:i:s", $stat['mtime']);
-
-
             $scan = scandir('root');
             foreach ($scan as $file) {
                 if (!is_dir("root/$file")) {
                     echo $file . ' <span style="color:red;">not folder</span><br>';
-                    $file = get_headers("http://localhost/filesystem-explorer/root/$file", 1);
-                    $byts = $file["Content-Length"];
+                    $files = get_headers("http://localhost/filesystem-explorer/root/$file", 1); //file => files
+                    $byts = $files["Content-Length"];
                     $kb = round($byts / 1024, 2);
-                    echo $kb . "KB";
-                    $statFile = stat("root/$file");
-                    echo 'Modification time: ' . gmdate("Y-m-d H:i:s", $statFile['mtime']);
+                    echo $kb . "KB<br>";
+                    $statFile = stat('root/' . $file);
+                    echo 'Modification time: ' . gmdate("Y-m-d H:i:s", $statFile['mtime']) . '<br>';
+                    echo 'Creation date: ' . gmdate("Y-m-d H:i:s", $statFile['ctime']) . '<br>';
                     echo "<br><br><br>";
                 } else if ('.' == $file or '..' == $file) {
                     // echo 'dot<br>';
                 } else {
-                    echo $file . ' <span style="color:blue;">is folder</span><br>';
+                    echo $file . ' <span style="color:blue;">is folder</span><br><br><br>';
                 }
             }
 
