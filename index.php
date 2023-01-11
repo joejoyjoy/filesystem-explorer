@@ -46,74 +46,45 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr style='cursor: pointer;' onclick="window.location='google.com';">
+
+                    <tr>
                         <td>Folder</td>
                         <td>18 May 2022</td>
                         <td>13 Jan 2023</td>
                         <td></td>
                         <td>23 MB</td>
                     </tr>
-                    <tr style='cursor: pointer;' onclick="window.location='img.com';">
-                        <td>img.png</td>
-                        <td>28 May 2022</td>
-                        <td>03 Jan 2023</td>
-                        <td>PNG</td>
-                        <td>1.2 MB</td>
-                    </tr>
+                    <?php
+                    $scan = scandir('root');
+                    foreach ($scan as $file) {
+                        if (!is_dir("root/$file")) {
+                            $files = get_headers("http://localhost/filesystem-explorer/root/$file", 1); //file => files
+                            $byts = $files["Content-Length"];
+                            $kb = round($byts / 1024, 2);
+                            $statFile = stat('root/' . $file);
+                            $path_parts = pathinfo($file);
+
+                            $output =
+                                "<tr>
+                                    <td><a href='http://localhost/filesystem-explorer/root/$file'>$file</a></td>
+                                    <td>" . gmdate("Y-m-d H:i:s", $statFile['mtime']) . "</td>
+                                    <td>" . gmdate("Y-m-d H:i:s", $statFile['mtime']) . "</td>
+                                    <td class='text-uppercase'>" . $path_parts['extension'] . "</td>
+                                    <td>$kb KB</td>
+                                </tr>";
+
+                            echo $output;
+                            
+                        } else if ('.' == $file or '..' == $file) {
+                            // echo 'dot<br>';
+                        } else {
+                            echo $file . ' <span style="color:blue;">is folder</span><br><br><br>';
+                        }
+                    }
+                    ?>
+
                 </tbody>
             </table>
-
-            <div id="fileListContainer">
-                <?php
-                require_once "./modules/listFiles.php"
-                ?>
-            </div>
-            <div id="infoFileContainer" class="custom-box">
-                <p id="fileSize"></p>
-                <p id="fileCreationDate"></p>
-                <p id="fileContent"></p>
-            </div>
-
-            <?php
-            $directory = "root";
-            $x = scandir($directory);
-
-
-            $scan = scandir('root');
-            foreach ($scan as $file) {
-                if (!is_dir("root/$file")) {
-                    echo $file . ' <span style="color:red;">not folder</span><br>';
-                    $files = get_headers("http://localhost/filesystem-explorer/root/$file", 1); //file => files
-                    $byts = $files["Content-Length"];
-                    $kb = round($byts / 1024, 2);
-                    echo $kb . "KB<br>";
-                    $statFile = stat('root/' . $file);
-                    echo 'Modification time: ' . gmdate("Y-m-d H:i:s", $statFile['mtime']) . '<br>';
-                    echo 'Creation date: ' . gmdate("Y-m-d H:i:s", $statFile['ctime']) . '<br>';
-                    echo "<br><br><br>";
-                } else if ('.' == $file or '..' == $file) {
-                    // echo 'dot<br>';
-                } else {
-                    echo $file . ' <span style="color:blue;">is folder</span><br><br><br>';
-                }
-            }
-
-            foreach ($x as $key => $value) {
-                // echo $value;
-                // echo "<br>";
-                if ('.' !== $value && '..' !== $value) {
-                    echo is_dir($value);
-                    if (is_dir($value)) {
-                        echo "<h5>Yes</h5>";
-                    } else {
-                        echo "<h5>No</h5>";
-                    }
-
-                    echo "<a href='http://localhost/filesystem-explorer/$directory/$value'>$value</a><br>";
-                }
-            }
-            ?>
-
         </div>
     </main>
 
