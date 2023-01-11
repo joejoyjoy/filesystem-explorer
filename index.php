@@ -60,7 +60,6 @@
                         <td>PNG</td>
                         <td>1.2 MB</td>
                     </tr>
-                    <tr>
                 </tbody>
             </table>
 
@@ -74,6 +73,7 @@
                 }
             }
             ?>
+            
         </div>
     </main>
 
