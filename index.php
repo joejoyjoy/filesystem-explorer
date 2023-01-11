@@ -79,10 +79,21 @@
             $x = scandir($directory);
 
 
+            // $stat = stat('root/test.txt');
+            // echo 'Modification time: ' . gmdate("Y-m-d H:i:s", $stat['mtime']);
+
+
             $scan = scandir('root');
             foreach ($scan as $file) {
                 if (!is_dir("root/$file")) {
                     echo $file . ' <span style="color:red;">not folder</span><br>';
+                    $file = get_headers("http://localhost/filesystem-explorer/root/$file", 1);
+                    $byts = $file["Content-Length"];
+                    $kb = round($byts / 1024, 2);
+                    echo $kb . "KB";
+                    $statFile = stat("root/$file");
+                    echo 'Modification time: ' . gmdate("Y-m-d H:i:s", $statFile['mtime']);
+                    echo "<br><br><br>";
                 } else if ('.' == $file or '..' == $file) {
                     // echo 'dot<br>';
                 } else {
