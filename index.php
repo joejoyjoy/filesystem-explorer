@@ -30,11 +30,12 @@
 
     <main class="d-flex flex-row">
         <nav class="w-25 bg-info vh-100">
-            wololo
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
+                Create new folder
+            </button>
         </nav>
 
-        <div class="w-75 bg-light vh-100 overflow-scroll">
-
+        <div class="w-75 bg-light vh-100 overflow-auto">
             <table class="table">
                 <thead>
                     <tr>
@@ -46,11 +47,17 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     <tr>
-                        <td>Folder</td>
-                        <td>18 May 2022</td>
+                        <td>
+                            <?php
+                            if (isset($_POST['submit'])) {
+                                $cfolder = $_POST['cfolder'];
+                                mkdir("root/$cfolder", 0777, true);
+                            }
+                            ?>
+                        </td>
                         <td>13 Jan 2023</td>
+                        <td>18 May 2022</td>
                         <td></td>
                         <td>23 MB</td>
                     </tr>
@@ -67,22 +74,20 @@
                             $output =
                                 "<tr>
                                     <td><a href='http://localhost/filesystem-explorer/root/$file'>$file</a></td>
+                                    <td>" . gmdate("Y-m-d H:i:s", $statFile['ctime']) . "</td>
                                     <td>" . gmdate("Y-m-d H:i:s", $statFile['mtime']) . "</td>
-                                    <td>" . gmdate("Y-m-d H:i:s", $statFile['atime']) . "</td>
                                     <td class='text-uppercase'>" . $path_parts['extension'] . "</td>
                                     <td>$kb KB</td>
                                 </tr>";
 
                             echo $output;
-                            
                         } else if ('.' == $file or '..' == $file) {
                             // echo 'dot<br>';
                         } else {
-                            echo $file . ' <span style="color:blue;">is folder</span><br><br><br>';
+                            echo $file . ' <span style="color:blue;">is a folder</span><br><br><br>';
                         }
                     }
                     ?>
-
                 </tbody>
             </table>
         </div>
@@ -95,3 +100,24 @@
 </body>
 
 </html>
+
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    Folder name: <input name="cfolder" type="text">
+                    <input type="submit" name="submit" value="Create Folder">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
