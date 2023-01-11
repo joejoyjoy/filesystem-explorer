@@ -82,13 +82,17 @@
             $scan = scandir('root');
             foreach ($scan as $file) {
                 if (!is_dir("root/$file")) {
-                    echo $file . 'helloRoot';
+                    echo $file . ' <span style="color:red;">not folder</span><br>';
+                } else if ('.' == $file or '..' == $file) {
+                    // echo 'dot<br>';
+                } else {
+                    echo $file . ' <span style="color:blue;">is folder</span><br>';
                 }
             }
 
             foreach ($x as $key => $value) {
-                echo $value;
-                echo "<br>";
+                // echo $value;
+                // echo "<br>";
                 if ('.' !== $value && '..' !== $value) {
                     echo is_dir($value);
                     if (is_dir($value)) {

@@ -11,7 +11,7 @@ function getFileInfo(event) {
         let filePath = btnElement.dataset.path;
         console.log(filePath);
 
-        fetch("modules/fileInfo.php" + "?" + "path=" + filePath, {
+        fetch("./modules/fileInfo.php" + "?" + "path=" + filePath, {
             method: "GET",
         })
             .then((response) => response.json())
