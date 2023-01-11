@@ -67,7 +67,7 @@
                             $output =
                                 "<tr>
                                     <td><a href='http://localhost/filesystem-explorer/root/$file'>$file</a></td>
-                                    <td>" . gmdate("Y-m-d H:i:s", $statFile['mtime']) . "</td>
+                                    <td>" . gmdate("Y-m-d H:i:s", $statFile['atime']) . "</td>
                                     <td>" . gmdate("Y-m-d H:i:s", $statFile['mtime']) . "</td>
                                     <td class='text-uppercase'>" . $path_parts['extension'] . "</td>
                                     <td>$kb KB</td>
