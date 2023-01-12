@@ -1,30 +1,40 @@
 <?php
 
-function tableInsert($e)
+function tableInsert($folder)
 {
-    $e = scandir('root');
-    foreach ($e as $eFile) {
-        if (!is_dir("root/$eFile")) {
-            $eFiles = get_headers("http://localhost/filesystem-explorer/root/$eFile", 1); //file => files
-            $eFileByts = $eFiles["Content-Length"];
-            $eFileKB = round($eFileByts / 1024, 2);
-            $eFileStatFile = stat('root/' . $eFile);
-            $eFilePathParts = pathinfo($eFile);
+    $e = scandir($folder);
+    foreach ($e as $file) {
+        if (!is_dir("root/$file")) {
+            $files = get_headers("http://localhost/filesystem-explorer/root/$file", 1); //file => files
+            $bytes = $files["Content-Length"];
+            $kb = round($bytes / 1024, 2);
+            $statFile = stat('root/' . $file);
+            $path_parts = pathinfo($file);
 
-            $eFileOutput =
+            $output =
                 "<tr>
-                <td><a href='http://localhost/filesystem-explorer/root/$eFile'>$eFile</a></td>
-                <td>" . gmdate("Y-m-d H:i:s", $eFileStatFile['mtime']) . "</td>
-                <td>" . gmdate("Y-m-d H:i:s", $eFileStatFile['atime']) . "</td>
-                <td class='text-uppercase'>" . $eFilePathParts['extension'] . "</td>
-                <td>$eFileKB KB</td>
-            </tr>";
+                        <td><a href='http://localhost/filesystem-explorer/root/$file'>$file</a></td>
+                        <td>" . gmdate('d-m-Y h:m:i A', $statFile["ctime"]) . "</td>
+                        <td>" . gmdate("Y-m-d H:i:s", $statFile['mtime']) . "</td>
+                        <td class='text-uppercase'>" . $path_parts['extension'] . "</td>
+                        <td>$kb KB</td>
+                    </tr>";
 
-            echo $eFileOutput;
-        } else if ('.' == $eFile or '..' == $eFile) {
+            echo $output;
+        } else if ('.' == $file or '..' == $file) {
             // echo 'dot<br>';
         } else {
-            echo $eFile . ' <span style="color:blue;">is a folder</span><br><br><br>';
+            $output =
+                "<tr>
+                <td><a href='http://localhost/filesystem-explorer/root/$file'>$file</a></td>
+                <td>" . gmdate("Y-m-d H:i:s", $statFile['ctime']) . "</td>
+                <td>" . gmdate("Y-m-d H:i:s", $statFile['mtime']) . "</td>
+                <td></td>
+                <td>$kb KB</td>
+                </tr>";
+            echo $output;
+
+            echo $file . ' <span style="color:blue;">is a folder</span><br><br><br>';
         }
     }
 }
