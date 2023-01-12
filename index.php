@@ -1,3 +1,17 @@
+<?php
+if (isset($_POST['submit'])) {
+    $cfolder = $_POST['cfolder'];
+    @mkdir("root/$cfolder", 0777, true);
+}
+
+if (isset($_POST['submitFile'])) {
+    $cfile = $_POST['cfileName'];
+    $cfileText = $_POST['cfileDes'];
+    @fopen("root/$cfile.txt", "w") or die("Unable to open file!");
+    @file_put_contents("root/$cfile.txt", $cfileText);
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -30,8 +44,11 @@
 
     <main class="d-flex flex-row">
         <nav class="w-25 bg-info vh-100">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#creatFolder">
                 Create new folder
+            </button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createFile">
+                Create new file
             </button>
         </nav>
 
@@ -47,20 +64,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <?php
-                            if (isset($_POST['submit'])) {
-                                $cfolder = $_POST['cfolder'];
-                                mkdir("root/$cfolder", 0777, true);
-                            }
-                            ?>
-                        </td>
-                        <td>13 Jan 2023</td>
-                        <td>18 May 2022</td>
-                        <td></td>
-                        <td>23 MB</td>
-                    </tr>
                     <?php
                     require_once __DIR__ . '/functions.php';
                     tableInsert('root');
@@ -115,22 +118,42 @@
 
 </html>
 
-<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="creatFolder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">Create new folder</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="" method="post" id="cfolderform">
                     Folder name: <input name="cfolder" type="text">
-                    <input type="submit" name="submit" value="Create Folder">
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <input type="submit" form="cfolderform" class="btn btn-primary" name="submit" value="Create Folder">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createFile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create new file</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" id="cfileform">
+                    File name: <input name="cfileName" type="text"><br>
+                    File description: <input name="cfileDes" type="text">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="submit" name="submitFile" form="cfileform" class="btn btn-primary" value="Create File">
             </div>
         </div>
     </div>
