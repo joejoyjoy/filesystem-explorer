@@ -237,14 +237,19 @@ if (isset($_POST['getPath'])) {
                 <content class="col-sm-4 bg-light p-2">
                     <h1 class="modal-title-info fs-5">Info</h1>
                     <hr>
-                    <b>File name: </b><p class="modal-title-name d-inline">file.txt</p><br>
-                    <b>Creation time: </b><p class="modal-title-ctime d-inline">dd/mm/yyyy</p><br>
-                    <b>Modified day: </b><p class="modal-title-mtime d-inline">dd/mm/yyyy</p><br>
-                    <b>Extension type: </b><p class="modal-title-extension d-inline text-uppercase">txt</p><br>
-                    <b>File size: </b><p class="modal-title-size d-inline">12 KB</p>
+                    <b>File name: </b>
+                    <p class="modal-title-name d-inline">file.txt</p><br>
+                    <b>Creation time: </b>
+                    <p class="modal-title-ctime d-inline">dd/mm/yyyy</p><br>
+                    <b>Modified day: </b>
+                    <p class="modal-title-mtime d-inline">dd/mm/yyyy</p><br>
+                    <b>Extension type: </b>
+                    <p class="modal-title-extension d-inline text-uppercase">txt</p><br>
+                    <b>File size: </b>
+                    <p class="modal-title-size d-inline">12 KB</p>
                 </content>
             </div>
-            <div class="modal-footer-close">
+            <div class="modal-footer modal-footer-close">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
