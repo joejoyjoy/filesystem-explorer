@@ -16,6 +16,12 @@ function format_folder_size($size)
 
 function tableInsert($urlItem)
 {
+    $trash = '<button type="button" class="btn btn-primary">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+</svg>
+  </button>';
     $e = scandir($urlItem);
     foreach ($e as $file) {
         if (!is_dir("$urlItem/$file")) {
@@ -29,7 +35,7 @@ function tableInsert($urlItem)
             $icon = iconInsert($path_parts['extension']);
             $output =
                 "<tr>
-                        <td>" . $icon . "<a href='$path/$urlItem/$file' class='btn' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-url='$path/$urlItem/$file' 
+                        <td>$icon<a href='$path/$urlItem/$file' class='btn' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-url='$path/$urlItem/$file' 
                         data-bs-ctime='" . gmdate("d-m-Y H:i", $statFile["ctime"]) . "' data-bs-mtime='" . gmdate("d-m-Y H:i", $statFile['mtime']) . "' 
                         data-bs-extension='" . $path_parts['extension'] . "' data-bs-size='" . format_folder_size($bytes) . "' data-bs-name='$file'>$file</a></td>
 
@@ -37,6 +43,7 @@ function tableInsert($urlItem)
                         <td>" . gmdate("d-m-Y H:i", $statFile['mtime']) . "</td>
                         <td class='text-uppercase'>" . $path_parts['extension'] . "</td>
                         <td>" . format_folder_size($bytes) . "</td>
+                        <td> $trash </td>
                 </tr>";
 
             echo $output;
@@ -75,6 +82,7 @@ function tableInsert($urlItem)
                     <td>" . gmdate("d-m-Y H:i", $fstatFile['mtime']) . "</td>
                     <td></td>
                     <td><span>$total KB</span></td>
+                    <td>$trash</td>
                 </tr>";
             echo $output;
         }

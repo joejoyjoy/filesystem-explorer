@@ -117,6 +117,7 @@ if (isset($_POST['getPath'])) {
                         <th scope="col">Last Modified Date</th>
                         <th scope="col">Extension</th>
                         <th scope="col">Size</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
