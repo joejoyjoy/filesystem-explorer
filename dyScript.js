@@ -78,7 +78,18 @@ exampleModal.addEventListener('show.bs.modal', event => {
         case "aac":
         case "flac":
         case "alac":
-            modalBodyInput.innerHTML = `<audio src="${recipient}" width="100%"></audio>`;
+            modalBodyInput.innerHTML = `<figure>
+                                            <figcaption>Listen to the T-Rex:</figcaption>
+                                                <audio
+                controls
+                src="/media/cc0-audio/t-rex-roar.mp3">
+                <a href="/media/cc0-audio/t-rex-roar.mp3">
+                    Download audio
+                </a>
+            </audio>
+        </figure>
+        <audio src="${recipient}" width="100%"></audio>`;
+            
             console.log(mediaType);
 
             break;
