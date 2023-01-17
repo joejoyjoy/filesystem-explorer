@@ -105,3 +105,5 @@ function dirToArray($dir)
 
     return $result;
 }
+
+$a = 0;
