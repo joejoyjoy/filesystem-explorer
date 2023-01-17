@@ -7,9 +7,11 @@ if (isset($_POST['getPath'])) {
     $urlItem = "root/$customUrlPath";
     createItem($urlItem);
     uploadItem($urlItem);
+    deleteItem($urlItem);
 } else {
     createItem('root');
     uploadItem('root');
+    deleteItem('root');
 }
 
 
@@ -252,6 +254,27 @@ if (isset($_POST['getPath'])) {
             </div>
             <div class="modal-footer modal-footer-close">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ******* DELETE Varying modal content ******** -->
+<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body-delete">
+                <form action="" method="post" id="Modaldelete">
+                    <input type="hidden" >
+                </form>
+            </div>
+            <div class="modal-footer modal-footer-close">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="submit" name="delete" form="delete" class="btn btn-warning" value="Delete" data-toggle="modal" modal-delete="content" data-bs-dismiss="modal" data-target=".bd-example-modal-lg">
             </div>
         </div>
     </div>

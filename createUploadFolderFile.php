@@ -16,6 +16,14 @@ function createItem($urlItem)
 }
 
 
+function deleteItem($urlItem) {
+    if (isset($_POST['deleteFile'])) {
+        $dFile = $_POST['deleteFile'];
+        unlink("$urlItem/$dFile");
+    }
+}
+
+
 function uploadItem($urlItem)
 {
     if ((@$_FILES['myfile']['name'] != "")) {
