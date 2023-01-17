@@ -15,6 +15,7 @@ exampleModal.addEventListener('show.bs.modal', event => {
     // Update the modal's content.
     const modalTitle = exampleModal.querySelector('.modal-title')
     const modalBodyInput = exampleModal.querySelector('.modal-body')
+    const modalBodyClose = exampleModal.querySelector('.modal-footer-close')
     const modalTitleInfo = exampleModal.querySelector('.modal-title-info')
 
     const modalTitleInfoName = exampleModal.querySelector('.modal-title-name')
@@ -23,6 +24,11 @@ exampleModal.addEventListener('show.bs.modal', event => {
     const modalTitleInfoExtension = exampleModal.querySelector('.modal-title-extension')
     const modalTitleInfoSize = exampleModal.querySelector('.modal-title-size')
 
+    var x = document.getElementById("myAudio");
+
+    function pauseAudio() {
+        x.pause();
+    }
 
 
     extension = recipient.split('.').pop();
@@ -78,24 +84,25 @@ exampleModal.addEventListener('show.bs.modal', event => {
         case "aac":
         case "flac":
         case "alac":
-            modalBodyInput.innerHTML = `<figure>
-                                            <figcaption>Listen to the T-Rex:</figcaption>
-                                                <audio
-                controls
-                src="/media/cc0-audio/t-rex-roar.mp3">
-                <a href="/media/cc0-audio/t-rex-roar.mp3">
-                    Download audio
-                </a>
-            </audio>
-        </figure>
-        <audio src="${recipient}" width="100%"></audio>`;
-            
+            modalBodyInput.innerHTML = `<audio id='myAudio' controls src="${recipient}"></audio>`;
+            modalBodyClose.innerHTML = `<button onclick="pauseAudio()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>`;
+
             console.log(mediaType);
 
             break;
 
         case "pdf":
             modalBodyInput.innerHTML = `<embed src="${recipient}" width="100%" height="800px"/>`;
+
+            break;
+
+        case "zip":
+            modalBodyInput.innerHTML = `<a href='${recipient}'><img src="assets/zip.png" alt="Zip Icon" width="100%" height="500"></img></a>`;
+
+            break;
+
+        case "txt":
+            modalBodyInput.innerHTML = `<a href='${recipient}'><img src="assets/txt.png" alt="Text Icon" width="100%" height="500"></img></a>`;
 
             break;
 

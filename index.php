@@ -4,9 +4,9 @@ require_once __DIR__ . '/functions.php';
 
 if (isset($_POST['getPath'])) {
     $customUrlPath = $_POST['getPath'];
-    $urlEvent = "root/$customUrlPath";
-    createItem($urlEvent);
-    uploadItem($urlEvent);
+    $urlItem = "root/$customUrlPath";
+    createItem($urlItem);
+    uploadItem($urlItem);
 } else {
     createItem('root');
     uploadItem('root');
@@ -244,7 +244,7 @@ if (isset($_POST['getPath'])) {
                     <b>File size: </b><p class="modal-title-size d-inline">12 KB</p>
                 </content>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer-close">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
