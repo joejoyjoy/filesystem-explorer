@@ -48,7 +48,6 @@ exampleModal.addEventListener('show.bs.modal', event => {
         case "avif":
         case "apng":
             modalBodyInput.innerHTML = `<img src="${recipient}" width="100%"></img>`;
-            console.log(mediaType);
             break;
 
         case "webm":
@@ -68,7 +67,6 @@ exampleModal.addEventListener('show.bs.modal', event => {
         case "swf":
         case "avchd":
             modalBodyInput.innerHTML = `<video src="${recipient}" width="100%" autoplay></video>`;
-            console.log(mediaType);
 
             break;
 
@@ -89,8 +87,7 @@ exampleModal.addEventListener('show.bs.modal', event => {
             </audio>
         </figure>
         <audio src="${recipient}" width="100%"></audio>`;
-            
-            console.log(mediaType);
+
 
             break;
 
