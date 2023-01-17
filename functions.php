@@ -30,7 +30,7 @@ function tableInsert($urlItem)
 
             $output =
                 "<tr>
-                        <td><a href='$path/$urlItem/$file' class='btn'>$file</a></td>
+                        <td><a href='$path/$urlItem/$file' class='btn' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='$path/$urlItem/$file'>$file</a></td>
                         <td>" . gmdate("d-m-Y H:i", $statFile["ctime"]) . "</td>
                         <td>" . gmdate("d-m-Y H:i", $statFile['mtime']) . "</td>
                         <td class='text-uppercase'>" . $path_parts['extension'] . "</td>
