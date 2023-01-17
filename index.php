@@ -49,7 +49,7 @@ if (isset($_POST['getPath'])) {
                         </fieldset>
                     </form>
 
-                    <ul class="liveSearchBar">
+                    <ul class="liveSearchBar" style="display: none;">
                         <?php
                         require_once('functions.php');
                         dirToArray('root');
@@ -225,27 +225,27 @@ if (isset($_POST['getPath'])) {
 
 <!-- ******* Varying modal content ******** -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Preview</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Recipient:</label>
-                        <input type="text" class="form-control" id="recipient-name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
-                    </div>
-                </form>
+            <div class="row m-2">
+                <div class="modal-body col-sm-8 p-0">
+                </div>
+                <content class="col-sm-4 bg-light p-2">
+                    <h1 class="modal-title-info fs-5">Info</h1>
+                    <hr>
+                    <b>File name: </b><p class="modal-title-name d-inline">file.txt</p><br>
+                    <b>Creation time: </b><p class="modal-title-ctime d-inline">dd/mm/yyyy</p><br>
+                    <b>Modified day: </b><p class="modal-title-mtime d-inline">dd/mm/yyyy</p><br>
+                    <b>Extension type: </b><p class="modal-title-extension d-inline text-uppercase">txt</p><br>
+                    <b>File size: </b><p class="modal-title-size d-inline">12 KB</p>
+                </content>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
             </div>
         </div>
     </div>

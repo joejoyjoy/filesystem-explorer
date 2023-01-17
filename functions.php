@@ -30,7 +30,10 @@ function tableInsert($urlItem)
 
             $output =
                 "<tr>
-                        <td><a href='$path/$urlItem/$file' class='btn' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='$path/$urlItem/$file'>$file</a></td>
+                        <td><a href='$path/$urlItem/$file' class='btn' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-url='$path/$urlItem/$file' 
+                        data-bs-ctime='" . gmdate("d-m-Y H:i", $statFile["ctime"]) . "' data-bs-mtime='" . gmdate("d-m-Y H:i", $statFile['mtime']) . "' 
+                        data-bs-extension='" . $path_parts['extension'] . "' data-bs-size='" . format_folder_size($bytes) . "' data-bs-name='$file'>$file</a></td>
+
                         <td>" . gmdate("d-m-Y H:i", $statFile["ctime"]) . "</td>
                         <td>" . gmdate("d-m-Y H:i", $statFile['mtime']) . "</td>
                         <td class='text-uppercase'>" . $path_parts['extension'] . "</td>
