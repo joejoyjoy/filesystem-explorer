@@ -15,37 +15,46 @@ function format_folder_size($size)
 
 
 
-function tableInsert($folder)
+function tableInsert($urlItem)
 {
-    $e = scandir($folder);
+    $e = scandir($urlItem);
     foreach ($e as $file) {
-        if (!is_dir("root/$file")) {
-            $files = get_headers("http://localhost/filesystem-explorer/root/$file", 1); //file => files
+        if (!is_dir("$urlItem/$file")) {
+            $path = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
+            $path .= $_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]);
+
+            $files = get_headers("$path/$urlItem/$file", 1); //file => files
             $bytes = $files["Content-Length"];
-            $statFile = stat('root/' . $file);
+            $statFile = stat("$urlItem/" . $file);
             $path_parts = pathinfo($file);
 
             $output =
                 "<tr>
-                        <td><a href='http://localhost/filesystem-explorer/root/$file'>$file</a></td>
+                        <td><a href='$path/$urlItem/$file' class='btn'>$file</a></td>
                         <td>" . gmdate("d-m-Y H:i", $statFile["ctime"]) . "</td>
                         <td>" . gmdate("d-m-Y H:i", $statFile['mtime']) . "</td>
                         <td class='text-uppercase'>" . $path_parts['extension'] . "</td>
                         <td>" . format_folder_size($bytes) . "</td>
-                    </tr>";
+                </tr>";
 
             echo $output;
         } else if ('.' == $file or '..' == $file) {
             // echo 'dot<br>';
         } else {
-            $direct = './root/' . $file;
-            $fstatFile = stat('root/' . $file);
+            $path = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
+            $path .= $_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]);
+
+            $direct = "./$urlItem/$file";
+            $fstatFile = stat("$urlItem/$file");
             $directFiles = array_diff(scandir($direct), array('..', '.'));
 
             $total = 0;
             foreach ($directFiles as $folderFiles) {
-                if (!is_dir("root/$file/$folderFiles")) {
-                    $files = get_headers("http://localhost/filesystem-explorer/root/$file/$folderFiles", 1); //file => files
+                if (!is_dir("$urlItem/$file/$folderFiles")) {
+                    $path = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
+                    $path .= $_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]);
+
+                    $files = get_headers("$path/$urlItem/$file/$folderFiles", 1); //file => files
                     $bytes = $files["Content-Length"];
                     $kb = round($bytes / 1024, 2);
 
@@ -55,8 +64,11 @@ function tableInsert($folder)
 
 
             $output =
-                "<tr>
-                    <td><a href='http://localhost/filesystem-explorer/root/$file'>$file</a></td>
+                "<tr><form action='' method='post' id='getUrlPath'>
+                        <input type='hidden' id='customUrlPath' name='customUrlPath' value='$file'>
+                    </form>
+
+                    <td><input type='submit' form='getUrlPath' class='btn btn-link' name='getPath' value='$file'></td>
                     <td>" . gmdate("d-m-Y H:i", $fstatFile['ctime']) . "</td>
                     <td>" . gmdate("d-m-Y H:i", $fstatFile['mtime']) . "</td>
                     <td></td>
@@ -65,4 +77,31 @@ function tableInsert($folder)
             echo $output;
         }
     }
+}
+
+
+function dirToArray($dir)
+{
+    $result = array();
+    $cdir = scandir($dir);
+
+    foreach ($cdir as $key => $value) {
+        if (!in_array($value, array(".", ".."))) {
+            if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
+                $result[] = dirToArray($dir . DIRECTORY_SEPARATOR . $value);
+                $path = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
+                $path .= $_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]);
+
+                echo "<li style='color:#ccc; list-style:none;'>$value</li>";
+            } else {
+                $result[] = $value;
+                $path = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
+                $path .= $_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]);
+
+                echo "<li style='list-style:none;'><a href='$path/$dir/$value' style='color:white;'>$value</a></li>";
+            }
+        }
+    }
+
+    return $result;
 }
