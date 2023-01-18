@@ -38,12 +38,12 @@ Delete files that are not used or are not necessary to evaluate the project
 
 This is the preview of FileSystem Main Body.
 
-<img src="assets/mainBody.jpg" alt="File system" width='48%'>
-<img src="assets/mainBodyWireframe.jpg" alt="File system wireframe" width='48%'>
+<img src="assets/mainBody.jpg" alt="File system" width='100%'>
+<img src="assets/mainBodyWireframe.jpg" alt="File system wireframe" width='100%'>
 
 This is the preview of FileSystem Main Body File Preview.
-<img src="assets/mainBodyPreview.jpg" alt="File system prefiew" width='48%'>
-<img src="assets/mainBodyPreviewWireframe.jpg" alt="File system prefiew wireframe" width='48%'>
+<img src="assets/mainBodyPreview.jpg" alt="File system prefiew" width='100%'>
+<img src="assets/mainBodyPreviewWireframe.jpg" alt="File system prefiew wireframe" width='100%'>
 
 ## Technologies used
 
