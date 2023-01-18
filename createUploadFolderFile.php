@@ -21,6 +21,11 @@ function deleteItem($urlItem) {
         $dFile = $_POST['deleteFile'];
         unlink("$urlItem/$dFile");
     }
+
+    if (isset($_POST['deleteFolder'])) {
+        $dFolder = $_POST['deleteFolder'];
+        rmdir("$urlItem/$dFolder");
+    }
 }
 
 

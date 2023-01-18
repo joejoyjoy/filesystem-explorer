@@ -1,12 +1,3 @@
-const modalDelete = document.getElementById('modalDelete')
-modalDelete.addEventListener('show.bs.modal', event => {
-    // Button that triggered the modal
-    const button = event.relatedTarget
-
-    const modalDelete = button.getAttribute('modal-delete')
-});
-
-
 const exampleModal = document.getElementById('exampleModal')
 exampleModal.addEventListener('show.bs.modal', event => {
     // Button that triggered the modal
@@ -116,3 +107,5 @@ exampleModal.addEventListener('show.bs.modal', event => {
             break;
     }
 })
+
+

@@ -25,6 +25,7 @@ if (isset($_POST['getPath'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Local FileSystem</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -47,11 +48,11 @@ if (isset($_POST['getPath'])) {
                 <div>
                     <form id="live-search" action="" class="styled" method="post">
                         <fieldset>
-                            <input type="text" value="Search here..." class="form-control me-2" id="filter" aria-label="Search">
+                            <input type="text" placeholder="Search here..." class="form-control me-2" id="searchBarInput" aria-label="Search">
                         </fieldset>
                     </form>
 
-                    <ul class="liveSearchBar" style="display: none;">
+                    <ul id="ulClass" class="liveSearchBar displayNone">
                         <?php
                         require_once('functions.php');
                         dirToArray('root');
@@ -59,8 +60,20 @@ if (isset($_POST['getPath'])) {
                     </ul>
 
                     <script id="rendered-js">
+                        const form = document.getElementById('searchBarInput');
+
+                        form.addEventListener('focus', (event) => {
+                            document.getElementById("ulClass").style.display = "block";
+
+                        }, true);
+
+                        form.addEventListener('blur', (event) => {
+                            document.getElementById("ulClass").style.display = "none";
+                        }, true);
+
+
                         $(document).ready(function() {
-                            $("#filter").keyup(function() {
+                            $("#searchBarInput").keyup(function() {
 
                                 var filter = $(this).val(),
                                     count = 0;
@@ -76,7 +89,6 @@ if (isset($_POST['getPath'])) {
                                     }
                                 });
                             });
-
                         });
                     </script>
 
@@ -269,7 +281,7 @@ if (isset($_POST['getPath'])) {
             </div>
             <div class="modal-body-delete">
                 <form action="" method="post" id="Modaldelete">
-                    <input type="hidden" >
+                    <input type="hidden">
                 </form>
             </div>
             <div class="modal-footer modal-footer-close">
