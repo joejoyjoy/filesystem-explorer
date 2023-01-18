@@ -6,7 +6,7 @@
   <img alt="Version" src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
->In this project you will have to create a system file explorer that allows the user to navigate, create directories and upload files in the same way as he would in his usual operating system. 
+>In this project we have created a system file explorer that allows the user to navigate, create directories and upload files in the same way as he would in his usual operating system. 
 
 >The file explorer is a tool that allows you to directly view and manipulate the files and directories associated with a path, so you must take into account from which path the user starts and which path they can access.
 
@@ -14,7 +14,7 @@
 ## Index <!-- omit in toc -->
 
 - [Requirements](#requirements)
-- [Repository](#repository)
+- [Preview](#preview)
 - [Technologies used](#technologies-used)
 - [Project delivery](#project-delivery)
 - [Resources](#resources)
@@ -34,13 +34,16 @@
 - You should try as much as possible that the commits and the planned tasks are the same
 Delete files that are not used or are not necessary to evaluate the project
 
-## Repository
+## Preview
 
-First of all you must fork this project into your GitHub account.
+This is the preview of FileSystem Main Body.
 
-To create a fork on GitHub is as easy as clicking the “fork” button on the repository page.
+<img src="assets/mainBody.jpg" alt="File system" width='450'>
+<img src="assets/mainBodyWireframe.jpg" alt="File system wireframe" width='450'>
 
-<img src="https://docs.github.com/assets/cb-23088/images/help/repository/fork_button.png" alt="Fork on GitHub" width='450'>
+This is the preview of FileSystem Main Body File Preview.
+<img src="assets/mainBodyPreview.jpg" alt="File system prefiew" width='450'>
+<img src="assets/mainBodyPreviewWireframe.jpg" alt="File system prefiew wireframe" width='450'>
 
 ## Technologies used
 
