@@ -68,7 +68,9 @@ if (isset($_POST['getPath'])) {
                         }, true);
 
                         form.addEventListener('blur', (event) => {
-                            document.getElementById("ulClass").style.display = "none";
+                            setTimeout(function() {
+                                document.getElementById("ulClass").style.display = "none";
+                            }, 1000);
                         }, true);
 
 
